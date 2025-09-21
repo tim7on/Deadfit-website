@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://tim7on.github.io',
+  base: '/Deadfit-website',
   vite: {
     plugins: [tailwindcss()]
   }
