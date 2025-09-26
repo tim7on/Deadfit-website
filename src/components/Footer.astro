@@ -1,6 +1,7 @@
 ---
 // src/components/Footer.astro
 const currentYear = new Date().getFullYear()
+import { copyright } from '../consstants/info'
 ---
 
 <footer class='border-t border-white/10 mt-20'>
@@ -8,18 +9,25 @@ const currentYear = new Date().getFullYear()
 		class='max-w-6xl mx-auto px-4 py-8 flex flex-col sm:flex-row justify-between items-center gap-4'
 	>
 		<p class='text-sm text-gray-400'>
-			&copy; {currentYear} Deadfit. All rights reserved.
+			&copy; {currentYear}
+			{copyright}
 		</p>
 		<div class='flex items-center gap-6'>
 			<a
+				href='/Deadfit-website/support'
+				class='text-sm text-gray-400 hover:text-black transition-colors duration-300'
+			>
+				Support
+			</a>
+			<a
 				href='/Deadfit-website/terms-of-service'
-				class='text-sm text-gray-400 hover:text-white transition-colors duration-300'
+				class='text-sm text-gray-400 hover:text-black transition-colors duration-300'
 			>
 				Terms of Service
 			</a>
 			<a
 				href='/Deadfit-website/privacy-policy'
-				class='text-sm text-gray-400 hover:text-white transition-colors duration-300'
+				class='text-sm text-gray-400 hover:text-black transition-colors duration-300'
 			>
 				Privacy Policy
 			</a>

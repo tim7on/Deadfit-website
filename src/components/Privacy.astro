@@ -1,9 +1,13 @@
+---
+import { privacyUpdated, emailContact } from '../consstants/info'
+---
+
 <main class='max-w-4xl mx-auto px-6 py-16 sm:py-24'>
 	<div
 		class='prose prose-invert prose-lg max-w-none [&_h1]:text-2xl [&_h1]:font-bold [&_h2]:text-lg [&_h2]:pt-3 [&_h3]:text-md [&_h3]:pt-2 [&_h4]:font-bold [&_ul]:pl-6 [&_ul]:list-disc [&_a]:text-blue-500 [&_a]:underline [&_a]:hover:text-blue-600'
 	>
 		<h1>Privacy Policy</h1>
-		<p>Last updated: September 22, 2025</p>
+		<p>Last updated: {privacyUpdated}</p>
 
 		<p>
 			Welcome to Deadfit. Your privacy is a top priority for us. This
@@ -148,7 +152,12 @@
 			us:
 		</p>
 		<ul>
-			<li>By email: timur.bapanov@gmail.com</li>
+			<li>
+				<strong>
+					<a href={`mailto:${emailContact}`}>{emailContact}</a
+					></strong
+				>
+			</li>
 		</ul>
 	</div>
 </main>

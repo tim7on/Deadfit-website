@@ -1,5 +1,6 @@
 ---
 // src/components/Hero.astro
+import { appName } from '../consstants/info'
 ---
 
 <section
@@ -15,7 +16,7 @@
 		<h1
 			class='text-5xl md:text-7xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-black to-black/70'
 		>
-			Meet Deadfit
+			Meet {appName}
 		</h1>
 		<p class='mt-4 text-lg md:text-xl max-w-2xl mx-auto text-black/50'>
 			Your ultimate fitness companion. Track workouts, crush goals, and
