@@ -1,4 +1,6 @@
 ---
+import { AppStoreLink, GooglePlayLink } from '../consstants/info'
+
 // src/components/CTA.astro
 ---
 
@@ -19,6 +21,7 @@
 			<!-- App Store Button -->
 			<a
 				aria-label='Download on the App Store'
+				href={AppStoreLink}
 				class='flex items-center justify-center gap-3 w-auto sm:w-auto bg-gray-800 text-white py-3 px-6 rounded-lg border border-white/20 hover:bg-gray-700 transition-all duration-300 transform hover:scale-105'
 			>
 				<!-- Apple SVG Icon -->
@@ -61,6 +64,7 @@
 			<!-- Google Play Button -->
 			<a
 				aria-label='Get it on Google Play'
+				href={GooglePlayLink}
 				class='flex items-center justify-center gap-3 w-auto sm:w-auto bg-gray-800 text-white py-3 px-6 rounded-lg border border-white/20 opacity-50'
 			>
 				<!-- Google Play SVG Icon -->
@@ -120,7 +124,11 @@
 
 					<span class='text-left'>
 						<span class='block text-xs text-gray-300'
-							>Soon on the</span
+							>{
+								GooglePlayLink
+									? 'Soon on the'
+									: 'Closed beta on'
+							}</span
 						>
 						<span class='block text-lg font-semibold leading-tight'
 							>Google Play</span
