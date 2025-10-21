@@ -104,7 +104,7 @@ const screenshots = [Screen1, Screen2, Screen3, Screen4, Screen5]
 							class='group flex flex-col gap-4 justify-center lg:justify-start a-fade-in a-delay-400 border-2 border-gray-200 rounded-xl p-4'
 						>
 							<a
-								href={GooglePlayLink || '#'}
+								href={'https://groups.google.com/g/deadfit'}
 								class='relative bg-white border-2 border-gray-200 text-gray-900 px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-gray-300 flex items-center justify-center gap-3'
 							>
 								<svg
@@ -128,7 +128,7 @@ const screenshots = [Screen1, Screen2, Screen3, Screen4, Screen5]
 
 								<div class='text-left'>
 									<div class='text-xs opacity-80'>
-										Step 1 Join
+										Шаг 1 Вступить в группу
 									</div>
 									<div class='text-sm font-bold'>
 										Google Group
@@ -150,7 +150,7 @@ const screenshots = [Screen1, Screen2, Screen3, Screen4, Screen5]
 								</svg>
 								<div class='text-left'>
 									<div class='text-xs opacity-80'>
-										Step 2 link to closed beta
+										Шаг 2 вступить в закрытое тестирвоание
 									</div>
 									<div class='text-sm font-bold'>
 										Google Play
@@ -163,195 +163,195 @@ const screenshots = [Screen1, Screen2, Screen3, Screen4, Screen5]
 			</div>
 		</div>
 	</div>
-</section>
 
-<style>
-	/* Marquee Container */
-	.marquee-container {
-		position: relative;
-		width: 100%;
-		overflow: hidden;
-		-webkit-mask-image: linear-gradient(
-			to right,
-			transparent,
-			black 10%,
-			black 90%,
-			transparent
-		);
-		mask-image: linear-gradient(
-			to right,
-			transparent,
-			black 10%,
-			black 90%,
-			transparent
-		);
-	}
-
-	@media (max-width: 1023px) {
+	<style>
+		/* Marquee Container */
 		.marquee-container {
+			position: relative;
+			width: 100%;
+			overflow: hidden;
 			-webkit-mask-image: linear-gradient(
 				to right,
 				transparent,
-				black 5%,
-				black 95%,
+				black 10%,
+				black 90%,
 				transparent
 			);
 			mask-image: linear-gradient(
 				to right,
 				transparent,
-				black 5%,
-				black 95%,
+				black 10%,
+				black 90%,
 				transparent
 			);
 		}
-	}
 
-	.marquee-content {
-		display: flex;
-		gap: 1.5rem;
-		will-change: transform;
-	}
-
-	.marquee-content:hover {
-		cursor: grab;
-	}
-
-	.marquee-content:active {
-		cursor: grabbing;
-	}
-
-	/* Marquee Animation */
-	@keyframes marquee {
-		0% {
-			transform: translateX(0);
-		}
-		50% {
-			transform: translateX(-110%);
-		}
-		100% {
-			transform: translateX(0);
-		}
-	}
-
-	.a-marquee-desktop {
-		animation: marquee 15s linear infinite;
-	}
-
-	.marquee-item {
-		flex-shrink: 0;
-	}
-
-	/* Screenshot Cards */
-	.screenshot-card {
-		position: relative;
-		background: linear-gradient(to bottom right, #1f2937, #111827);
-		border-radius: 1.25rem;
-		box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.25);
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		width: 10rem;
-	}
-
-	@media (min-width: 640px) {
-		.screenshot-card {
-			width: 12rem;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.screenshot-card {
-			width: 14rem;
-			border-radius: 1.5rem;
-		}
-	}
-
-	.screenshot-image {
-		width: 100%;
-		height: auto;
-		aspect-ratio: 9 / 19.5;
-		object-fit: cover;
-		border-radius: 0.75rem;
-		display: block;
-	}
-
-	@media (min-width: 1024px) {
-		.screenshot-image {
-			border-radius: 1rem;
-		}
-	}
-
-	.screenshot-overlay {
-		position: absolute;
-		inset: 0;
-		border-radius: 1rem;
-		opacity: 0;
-		transition: opacity 0.3s ease;
-		pointer-events: none;
-	}
-
-	@media (min-width: 1024px) {
-		.screenshot-overlay {
-			border-radius: 1.5rem;
-		}
-	}
-
-	.screenshot-card:hover .screenshot-overlay {
-		opacity: 1;
-	}
-
-	/* Fade In Animation */
-	@keyframes fade-in {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.a-fade-in {
-		animation: fade-in 0.8s ease-out forwards;
-		opacity: 0;
-	}
-
-	.a-delay-200 {
-		animation-delay: 0.2s;
-	}
-
-	.a-delay-400 {
-		animation-delay: 0.4s;
-	}
-
-	/* Gradient Animation */
-	@keyframes gradient {
-		0%,
-		100% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-	}
-
-	.a-gradient {
-		background-size: 200% auto;
-		animation: gradient 3s ease infinite;
-	}
-
-	/* Performance Optimizations */
-	@media (prefers-reduced-motion: reduce) {
-		*,
-		*::before,
-		*::after {
-			animation-duration: 0.01ms !important;
-			animation-iteration-count: 1 !important;
-			transition-duration: 0.01ms !important;
-			scroll-behavior: auto !important;
+		@media (max-width: 1023px) {
+			.marquee-container {
+				-webkit-mask-image: linear-gradient(
+					to right,
+					transparent,
+					black 5%,
+					black 95%,
+					transparent
+				);
+				mask-image: linear-gradient(
+					to right,
+					transparent,
+					black 5%,
+					black 95%,
+					transparent
+				);
+			}
 		}
 
 		.marquee-content {
-			animation: none !important;
+			display: flex;
+			gap: 1.5rem;
+			will-change: transform;
 		}
-	}
-</style>
+
+		.marquee-content:hover {
+			cursor: grab;
+		}
+
+		.marquee-content:active {
+			cursor: grabbing;
+		}
+
+		/* Marquee Animation */
+		@keyframes marquee {
+			0% {
+				transform: translateX(0);
+			}
+			50% {
+				transform: translateX(-110%);
+			}
+			100% {
+				transform: translateX(0);
+			}
+		}
+
+		.a-marquee-desktop {
+			animation: marquee 15s linear infinite;
+		}
+
+		.marquee-item {
+			flex-shrink: 0;
+		}
+
+		/* Screenshot Cards */
+		.screenshot-card {
+			position: relative;
+			background: linear-gradient(to bottom right, #1f2937, #111827);
+			border-radius: 1.25rem;
+			box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.25);
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			width: 10rem;
+		}
+
+		@media (min-width: 640px) {
+			.screenshot-card {
+				width: 12rem;
+			}
+		}
+
+		@media (min-width: 1024px) {
+			.screenshot-card {
+				width: 14rem;
+				border-radius: 1.5rem;
+			}
+		}
+
+		.screenshot-image {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 9 / 19.5;
+			object-fit: cover;
+			border-radius: 0.75rem;
+			display: block;
+		}
+
+		@media (min-width: 1024px) {
+			.screenshot-image {
+				border-radius: 1rem;
+			}
+		}
+
+		.screenshot-overlay {
+			position: absolute;
+			inset: 0;
+			border-radius: 1rem;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+			pointer-events: none;
+		}
+
+		@media (min-width: 1024px) {
+			.screenshot-overlay {
+				border-radius: 1.5rem;
+			}
+		}
+
+		.screenshot-card:hover .screenshot-overlay {
+			opacity: 1;
+		}
+
+		/* Fade In Animation */
+		@keyframes fade-in {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.a-fade-in {
+			animation: fade-in 0.8s ease-out forwards;
+			opacity: 0;
+		}
+
+		.a-delay-200 {
+			animation-delay: 0.2s;
+		}
+
+		.a-delay-400 {
+			animation-delay: 0.4s;
+		}
+
+		/* Gradient Animation */
+		@keyframes gradient {
+			0%,
+			100% {
+				background-position: 0% 50%;
+			}
+			50% {
+				background-position: 100% 50%;
+			}
+		}
+
+		.a-gradient {
+			background-size: 200% auto;
+			animation: gradient 3s ease infinite;
+		}
+
+		/* Performance Optimizations */
+		@media (prefers-reduced-motion: reduce) {
+			*,
+			*::before,
+			*::after {
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 0.01ms !important;
+				scroll-behavior: auto !important;
+			}
+
+			.marquee-content {
+				animation: none !important;
+			}
+		}
+	</style>
+</section>
