@@ -8,3 +8,5 @@ export const copyright = 'Deadfit. All rights reserved.'
 export const appName = 'Deadfit'
 export const AppStoreLink = 'https://apps.apple.com/us/app/deadfit-workouts-logs-goals/id6747721349'
 export const GooglePlayLink = 'https://play.google.com/store/apps/details?id=com.tim7on.DeadFit'
+
+export const BASE_ROUTE = '/Deadfit-website'

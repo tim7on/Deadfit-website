@@ -1,0 +1,286 @@
+---
+// src/components/LanguagePicker.astro---
+
+import { languages, ui } from '../i18n/ui'
+import {
+	getLangFromUrl,
+	useTranslatedPath,
+	getRouteFromUrl,
+} from '../i18n/utils'
+
+const currentLang = getLangFromUrl(Astro.url)
+const currentLangLabel = languages[currentLang]
+const translatePath = useTranslatedPath(currentLang)
+const route = getRouteFromUrl(Astro.url)
+---
+
+<div class='relative inline-block language-dropdown'>
+	<button
+		id='language-toggle'
+		class='bg-white/10 backdrop-blur-md border border-white/20 rounded-xl px-3 py-2 text-gray-700 text-sm font-medium cursor-pointer transition-all duration-300 ease-out shadow-sm hover:bg-white/20 hover:border-white/30 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-indigo-500/30'
+		aria-label='Select language'
+		aria-expanded='false'
+		aria-haspopup='true'
+	>
+		<div class='flex items-center gap-2'>
+			<span class='text-sm font-medium whitespace-nowrap'
+				>{currentLangLabel}</span
+			>
+			<svg
+				class='w-3 h-3 text-gray-500 transition-transform duration-300 ease-out'
+				width='12'
+				height='12'
+				viewBox='0 0 12 12'
+				fill='none'
+				xmlns='http://www.w3.org/2000/svg'
+			>
+				<path
+					d='M4.5 3L7.5 6L4.5 9'
+					stroke='currentColor'
+					stroke-width='1.5'
+					stroke-linecap='round'
+					stroke-linejoin='round'></path>
+			</svg>
+		</div>
+	</button>
+
+	<div
+		id='language-menu'
+		class='absolute top-[calc(100%+0.5rem)] right-0 min-w-[180px] bg-white/95 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg opacity-0 invisible -translate-y-2 scale-95 transition-all duration-300 ease-out z-50'
+		role='menu'
+		aria-labelledby='language-toggle'
+	>
+		<div class='p-2'>
+			{
+				Object.entries(languages).map(([lang, label]) => {
+					const isActive = lang === currentLang
+					return (
+						<a
+							href={
+								isActive
+									? undefined
+									: translatePath(
+											`/${route ? route : ''}`,
+											lang as keyof typeof ui,
+										)
+							}
+							class={`flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 text-sm transition-all duration-200 ease-out relative ${
+								isActive
+									? 'bg-indigo-500/10 text-indigo-600 font-semibold'
+									: 'hover:bg-indigo-500/5 hover:text-indigo-600'
+							}`}
+							role='menuitem'
+							aria-current={isActive ? 'true' : 'false'}
+							onclick={isActive ? 'return false' : undefined}
+						>
+							<span class='text-sm'>{label}</span>
+							{isActive && (
+								<svg
+									class='w-4 h-4 text-indigo-600 flex-shrink-0'
+									width='16'
+									height='16'
+									viewBox='0 0 16 16'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										d='M13.854 3.646L6 11.5L2.146 7.646L3.5 6.293L6 8.793L12.5 2.293L13.854 3.646Z'
+										fill='currentColor'
+									/>
+								</svg>
+							)}
+						</a>
+					)
+				})
+			}
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const toggle = document.getElementById('language-toggle')
+		const menu = document.getElementById('language-menu')
+
+		if (!toggle || !menu) return
+
+		toggle.addEventListener('click', e => {
+			e.stopPropagation()
+			const isExpanded = toggle.getAttribute('aria-expanded') === 'true'
+			console.log('LanguagePicker: Current expanded state:', isExpanded)
+
+			document.querySelectorAll('[aria-expanded="true"]').forEach(el => {
+				if (el !== toggle) {
+					el.setAttribute('aria-expanded', 'false')
+					el.nextElementSibling?.classList.remove(
+						'opacity-100',
+						'visible',
+						'translate-y-0',
+						'scale-100',
+					)
+					el.nextElementSibling?.classList.add(
+						'opacity-0',
+						'invisible',
+						'-translate-y-2',
+						'scale-95',
+					)
+				}
+			})
+
+			const newState = !isExpanded ? 'true' : 'false'
+			toggle.setAttribute('aria-expanded', newState)
+			console.log('LanguagePicker: Setting expanded to:', newState)
+
+			if (!isExpanded) {
+				menu.classList.remove(
+					'opacity-0',
+					'invisible',
+					'-translate-y-2',
+					'scale-95',
+				)
+				menu.classList.add(
+					'opacity-100',
+					'visible',
+					'translate-y-0',
+					'scale-100',
+				)
+			} else {
+				menu.classList.remove(
+					'opacity-100',
+					'visible',
+					'translate-y-0',
+					'scale-100',
+				)
+				menu.classList.add(
+					'opacity-0',
+					'invisible',
+					'-translate-y-2',
+					'scale-95',
+				)
+			}
+		})
+
+		document.addEventListener('click', e => {
+			if (
+				!toggle.contains(e.target as Node) &&
+				!menu.contains(e.target as Node)
+			) {
+				toggle.setAttribute('aria-expanded', 'false')
+				menu.classList.remove(
+					'opacity-100',
+					'visible',
+					'translate-y-0',
+					'scale-100',
+				)
+				menu.classList.add(
+					'opacity-0',
+					'invisible',
+					'-translate-y-2',
+					'scale-95',
+				)
+			}
+		})
+
+		document.addEventListener('keydown', e => {
+			if (
+				e.key === 'Escape' &&
+				toggle.getAttribute('aria-expanded') === 'true'
+			) {
+				toggle.setAttribute('aria-expanded', 'false')
+				menu.classList.remove(
+					'opacity-100',
+					'visible',
+					'translate-y-0',
+					'scale-100',
+				)
+				menu.classList.add(
+					'opacity-0',
+					'invisible',
+					'-translate-y-2',
+					'scale-95',
+				)
+				toggle.focus()
+			}
+		})
+
+		menu.addEventListener('keydown', e => {
+			const options = menu.querySelectorAll('[role="menuitem"]')
+			const currentIndex = Array.from(options).indexOf(
+				document.activeElement as Element,
+			)
+
+			switch (e.key) {
+				case 'ArrowDown':
+					e.preventDefault()
+					const nextIndex =
+						currentIndex < options.length - 1 ? currentIndex + 1 : 0
+					;(options[nextIndex] as HTMLElement)?.focus()
+					break
+				case 'ArrowUp':
+					e.preventDefault()
+					const prevIndex =
+						currentIndex > 0 ? currentIndex - 1 : options.length - 1
+					;(options[prevIndex] as HTMLElement)?.focus()
+					break
+				case 'Enter':
+				case ' ':
+					e.preventDefault()
+					;(document.activeElement as HTMLElement)?.click()
+					break
+			}
+		})
+	})
+</script>
+
+<style>
+	/* Enhanced glass effect for better browser support */
+	.language-dropdown button {
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+	}
+
+	.language-dropdown > div {
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		box-shadow:
+			0 10px 15px -3px rgba(0, 0, 0, 0.1),
+			0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	}
+
+	/* Arrow rotation animation */
+	.language-dropdown button svg {
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		transform-origin: center;
+	}
+
+	.language-dropdown button[aria-expanded="true"] svg {
+		transform: rotate(90deg) translateZ(0);
+	}
+
+	/* Mobile responsiveness */
+	@media (max-width: 640px) {
+		.language-dropdown button {
+			padding-left: 0.5rem;
+			padding-right: 0.5rem;
+		}
+
+		/* Keep language text visible on mobile - no hiding needed */
+		.language-dropdown > div {
+			right: -1rem;
+			min-width: 160px;
+		}
+	}
+
+	/* Reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.language-dropdown button,
+		.language-dropdown > div,
+		.language-dropdown a {
+			transition: none !important;
+		}
+
+		.language-dropdown button svg {
+			transition: none !important;
+		}
+	}
+</style>

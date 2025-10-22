@@ -1,7 +1,18 @@
 ---
 // src/components/Footer.astro
+import {
+	getLangFromUrl,
+	useTranslatedPath,
+	useTranslations,
+} from '../i18n/utils'
+
 const currentYear = new Date().getFullYear()
-import { copyright } from '../consstants/info'
+import { copyright } from '../constants/info'
+
+const currentLang = getLangFromUrl(Astro.url)
+const translatePath = useTranslatedPath(currentLang)
+
+const t = useTranslations(currentLang)
 ---
 
 <footer class='border-t border-white/10 mt-20'>
@@ -9,27 +20,26 @@ import { copyright } from '../consstants/info'
 		class='max-w-6xl mx-auto px-4 py-8 flex flex-col sm:flex-row justify-between items-center gap-4'
 	>
 		<p class='text-sm text-gray-400'>
-			&copy; {currentYear}
-			{copyright}
+			{t('footer.copyright')}
 		</p>
 		<div class='flex items-center gap-6'>
 			<a
-				href='/Deadfit-website/support'
+				href={translatePath('/support')}
 				class='text-sm text-gray-400 hover:text-black transition-colors duration-300'
 			>
-				Support
+				{t('footer.support')}
 			</a>
 			<a
-				href='/Deadfit-website/terms-of-service'
+				href={translatePath('/terms-of-service')}
 				class='text-sm text-gray-400 hover:text-black transition-colors duration-300'
 			>
-				Terms of Service
+				{t('footer.terms-of-service')}
 			</a>
 			<a
-				href='/Deadfit-website/privacy-policy'
+				href={translatePath('/privacy-policy')}
 				class='text-sm text-gray-400 hover:text-black transition-colors duration-300'
 			>
-				Privacy Policy
+				{t('footer.privacy-policy')}
 			</a>
 		</div>
 	</div>

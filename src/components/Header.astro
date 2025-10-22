@@ -1,10 +1,14 @@
 ---
 // src/components/Header.astro
-import { appName } from '../consstants/info'
+import { appName, BASE_ROUTE } from '../constants/info'
+import LanguagePicker from './LanguagePicker.astro'
+import { getLangFromUrl, useTranslatedPath } from '../i18n/utils'
 
+const currentLang = getLangFromUrl(Astro.url)
+const translatePath = useTranslatedPath(currentLang)
 const isHomepage =
-	Astro.url.pathname === '/Deadfit-website' ||
-	Astro.url.pathname === '/Deadfit-website/'
+	Astro.url.pathname === translatePath('') ||
+	Astro.url.pathname === translatePath('/') + '/'
 ---
 
 <header class='header-glass'>
@@ -12,7 +16,7 @@ const isHomepage =
 		class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between'
 	>
 		<a
-			href='/Deadfit-website'
+			href={translatePath('')}
 			class='logo-link'
 			aria-label='Go to homepage'
 			id='logo-link'
@@ -20,7 +24,7 @@ const isHomepage =
 		>
 			<div class='logo-container'>
 				<img
-					src='/Deadfit-website/favicon.svg'
+					src={`${BASE_ROUTE}/favicon.svg`}
 					alt={`${appName} logo`}
 					class='logo-image'
 				/>
@@ -29,8 +33,7 @@ const isHomepage =
 				<span class='logo-gradient'>{appName}</span>
 			</span>
 		</a>
-
-
+		<LanguagePicker />
 	</div>
 </header>
 
@@ -157,8 +160,6 @@ const isHomepage =
 			background-position: 100% 50%;
 		}
 	}
-
-
 
 	/* Responsive */
 	@media (max-width: 640px) {
